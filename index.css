@@ -1,0 +1,744 @@
+/* Paleta de Colores "Serenity & Clarity":
+   Fondo Principal: #F0F4F8 (Azul muy claro, casi blanco)
+   Fondo Acento/Secundario: #E8EEF4 (Gris azulado muy suave)
+   Contenedores: #FFFFFF (Blanco puro)
+   Texto Principal: #2F4F6F (Azul pizarra oscuro, profundo)
+   Texto Secundario/Labels: #5A7B9A (Azul grisáceo medio)
+   Bordes/Divisores: #DDE7F1 (Gris azulado claro)
+   Interacción/Acento Primario: #6A99C7 (Azul cielo suave, calmante)
+   Acento Secundario/Éxito: #6BBF99 (Verde menta suave)
+   Acento Terciario/Advertencia: #FFB347 (Naranja dorado suave)
+   Error: #E76F51 (Coral/Rojo suave)
+*/
+
+/* --- Base Styles & Background --- */
+body {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif; /* Preferencia por Inter, si está disponible, sino fallbacks */
+    background: linear-gradient(145deg, #F0F4F8 0%, #E8EEF4 100%); /* Suave degradado de fondo */
+    min-height: 100vh;
+    margin: 0;
+    color: #2F4F6F; /* Color de texto principal */
+    padding: 40px 20px; /* Más padding general */
+    box-sizing: border-box;
+    overflow-x: hidden;
+    display: flex; /* Usamos flex para centrar el contenido verticalmente */
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente los elementos hijos (bloques) */
+    justify-content: flex-start; /* Alinea los elementos al inicio del eje principal */
+
+    /* Animación de fondo sutil: un gradiente que se mueve ligeramente */
+    animation: backgroundShift 20s infinite alternate ease-in-out;
+    background-size: 200% 200%; /* Permite que el gradiente se mueva más */
+}
+
+@keyframes backgroundShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* --- Main Containers (Forms & Tables) --- */
+.form-container,
+.table-container,
+.book-grid {
+    background-color: #FFFFFF;
+    padding: 50px; /* Más padding para una sensación premium */
+    border-radius: 20px; /* Bordes más redondeados */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1); /* Sombra elegante y profunda */
+    width: 100%;
+    max-width: 700px; /* Ancho cómodo para formularios */
+    box-sizing: border-box;
+    margin-bottom: 40px; /* Espacio entre contenedores */
+    opacity: 0;
+    transform: translateY(40px); /* Deslizamiento más pronunciado */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animación de entrada más suave y larga */
+    border: 1px solid #E8EEF4; /* Borde muy sutil */
+}
+
+.form-container {
+    animation-delay: 0.2s;
+}
+
+.table-container {
+    max-width: 1100px; /* Ancho más grande para la tabla */
+    animation-delay: 0.4s;
+}
+
+.book-grid {
+    max-width: 1300px; /* Más ancho para la cuadrícula de libros */
+    padding: 40px;
+    animation-delay: 0.6s;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Columnas auto-ajustables */
+    gap: 30px; /* Espacio entre libros */
+}
+
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Headings --- */
+h1 {
+    text-align: center;
+    color: #2F4F6F;
+    margin-bottom: 50px;
+    font-size: 4em;
+    font-weight: 800;
+    position: relative;
+    padding-bottom: 25px;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 8px;
+    background: linear-gradient(90deg, #6BBF99, #6A99C7);
+    border-radius: 4px;
+    animation: underlineExpand 1.5s ease-out forwards;
+}
+
+h2 {
+    text-align: center;
+    color: #2F4F6F; /* Azul pizarra oscuro para títulos */
+    margin-bottom: 40px;
+    font-size: 3em; /* Título grande y prominente */
+    font-weight: 700; /* Negrita */
+    position: relative;
+    padding-bottom: 20px;
+    letter-spacing: -0.5px; /* Ajuste sutil del espaciado */
+    line-height: 1.2;
+}
+
+h2::after { /* Subrayado animado y moderno */
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px; /* Más largo */
+    height: 6px; /* Más grueso */
+    background: linear-gradient(90deg, #6A99C7, #6BBF99); /* Degradado azul a verde */
+    border-radius: 3px;
+    animation: underlineExpand 1.2s ease-out forwards;
+}
+
+@keyframes underlineExpand {
+    from { width: 0; }
+    to { width: 80px; }
+}
+
+/* --- Form Groups & Labels --- */
+.form-group {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    color: #5A7B9A; /* Azul grisáceo para labels */
+    font-weight: 600;
+    font-size: 1.15em;
+    transition: color 0.3s ease;
+}
+
+/* --- Input Fields & Selects --- */
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 18px 22px; /* Mayor padding */
+    border: 2px solid #DDE7F1; /* Borde más definido y claro */
+    border-radius: 12px; /* Más redondeado */
+    font-size: 1.1em;
+    color: #2F4F6F;
+    background-color: #FDFEFF; /* Fondo blanco casi puro */
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
+    transition: all 0.4s ease-out; /* Transición suave */
+    box-sizing: border-box;
+    -webkit-appearance: none; /* Reset para select */
+    -moz-appearance: none; /* Reset para select */
+    appearance: none; /* Reset para select */
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #6A99C7; /* Azul interactivo al enfocar */
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(106, 153, 199, 0.25); /* Sombra de enfoque sutil */
+    background-color: #FFFFFF;
+}
+
+/* Flecha personalizada para select */
+select {
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%235A7B9A%22%20d%3D%22M9.293%2012.95l.707.707L15.657%208l-1.414-1.414L10%2010.828%206.01%206.838%204.596%208.252z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1.5em center;
+    background-size: 0.9em auto;
+}
+
+/* --- Submit Button --- */
+.submit-button {
+    background: linear-gradient(45deg, #6A99C7, #6BBF99); /* Degradado suave azul a verde */
+    color: white;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.25em;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 35px;
+    box-shadow: 0 10px 30px rgba(106, 153, 199, 0.4); /* Sombra destacada */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    outline: none; /* Asegura que no haya outline al hacer clic */
+}
+
+.submit-button::before { /* Efecto de brillo sutil */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-30deg);
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.submit-button:hover::before {
+    left: 100%;
+}
+
+.submit-button:hover {
+    background: linear-gradient(45deg, #6BBF99, #6A99C7); /* Invertir degradado */
+    box-shadow: 0 12px 35px rgba(107, 191, 153, 0.5);
+    transform: translateY(-5px); /* Efecto de "levantar" más pronunciado */
+}
+
+.submit-button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 20px rgba(106, 153, 199, 0.2);
+}
+
+/* --- Table Styles --- */
+#librosTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 35px;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #E8EEF4; /* Borde sutil */
+}
+
+#librosTable th,
+#librosTable td {
+    padding: 18px 25px;
+    text-align: left;
+    border-bottom: 1px solid #F0F4F8; /* Borde muy sutil entre filas */
+    color: #2F4F6F; /* Azul oscuro para texto de tabla */
+}
+
+#librosTable th {
+    background-color: #F8FBFD; /* Fondo más claro para encabezados */
+    color: #5A7B9A;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.8px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#librosTable tbody tr {
+    transition: all 0.3s ease-out;
+}
+
+#librosTable tbody tr:nth-child(even) { /* Rayas cebra suaves */
+    background-color: #FDFEFF;
+}
+
+#librosTable tbody tr:hover {
+    background-color: #E8EEF4; /* Fondo suave al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño levantamiento */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra sutil al hover */
+}
+
+/* Message for no books */
+.no-books-row {
+    text-align: center;
+    font-style: italic;
+    color: #5A7B9A;
+    padding: 40px !important;
+    background-color: #FDFEFF;
+    font-size: 1.1em;
+}
+
+/* --- Action Buttons (Table) --- */
+.delete-button,
+.edit-button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: all 0.3s ease-out;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.delete-button {
+    background-color: #E76F51; /* Coral suave para eliminar */
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #D35C40;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 111, 81, 0.4);
+}
+
+.edit-button {
+    background-color: #6A99C7; /* Azul interactivo para editar */
+    color: white;
+    margin-right: 10px;
+}
+
+.edit-button:hover {
+    background-color: #5681B3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(106, 153, 199, 0.4);
+}
+
+.action-buttons-cell {
+    white-space: nowrap;
+    min-width: 170px;
+}
+
+/* --- Feedback Messages (Success/Error) --- */
+.success-message {
+    background-color: #F0FBF5; /* Verde muy claro */
+    color: #4CAF50; /* Verde vibrante */
+    border: 1px solid #BEE0C4;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 5px 15px rgba(107, 191, 153, 0.15);
+    animation: fadeIn 0.6s ease-out;
+    max-width: 650px;
+}
+
+.error-message {
+    background-color: #FEEEEE; /* Rojo muy claro */
+    color: #E76F51; /* Coral/Rojo suave */
+    border: 1px solid #F5C7BD;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 5px 15px rgba(231, 111, 81, 0.15);
+    animation: fadeIn 0.6s ease-out;
+    max-width: 650px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Navigation Button (Action Button) --- */
+.button-container {
+    margin-top: 45px;
+    text-align: center;
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
+    padding: 0 20px; /* Asegura que el padding no cause desbordamiento en anchos pequeños */
+}
+
+.action-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #6BBF99, #6A99C7); /* Degradado verde a azul */
+    color: white;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.25em;
+    font-weight: 700;
+    text-decoration: none;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(107, 191, 153, 0.4);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+}
+
+.action-button::before { /* Efecto de brillo sutil */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-30deg);
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.action-button:hover::before {
+    left: 100%;
+}
+
+.action-button:hover {
+    background: linear-gradient(45deg, #6A99C7, #6BBF99); /* Invertir degradado */
+    box-shadow: 0 12px 35px rgba(106, 153, 199, 0.5);
+    transform: translateY(-5px);
+}
+
+.action-button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 20px rgba(107, 191, 153, 0.2);
+}
+
+/* --- Book Card Styles (for the gallery) --- */
+.book-card {
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #E8EEF4;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.book-card img {
+    width: 100%;
+    height: 300px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    border-bottom: 1px solid #DDE7F1;
+}
+
+.book-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-card h3 {
+    color: #2F4F6F;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.book-card p {
+    color: #5A7B9A;
+    font-size: 0.95em;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.book-card .author {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.book-card .price {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #6A99C7; /* Azul para el precio */
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.book-card .add-to-cart-button {
+    background: linear-gradient(45deg, #6BBF99, #6A99C7);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(107, 191, 153, 0.3);
+}
+
+.book-card .add-to-cart-button:hover {
+    background: linear-gradient(45deg, #6A99C7, #6BBF99);
+    box-shadow: 0 7px 20px rgba(106, 153, 199, 0.4);
+    transform: translateY(-2px);
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 1350px) {
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 1150px) {
+    .table-container {
+        max-width: 95%; /* Más ancho en pantallas de tamaño intermedio */
+    }
+    .book-grid {
+        max-width: 95%;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 3.2em;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+    }
+
+    h1::after {
+        width: 100px;
+        height: 7px;
+    }
+
+    .form-container,
+    .table-container,
+    .book-grid {
+        padding: 35px 25px;
+        border-radius: 15px;
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+
+    h2::after {
+        width: 60px;
+        height: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-size: 1.05em;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select {
+        padding: 15px 20px;
+        font-size: 1em;
+        border-radius: 10px;
+    }
+
+    .submit-button,
+    .action-button {
+        font-size: 1.1em;
+        padding: 16px 30px;
+        border-radius: 10px;
+        margin-top: 25px;
+    }
+
+    #librosTable th,
+    #librosTable td {
+        padding: 15px 20px;
+        font-size: 0.9em;
+    }
+
+    .delete-button,
+    .edit-button {
+        padding: 8px 14px;
+        font-size: 0.8em;
+        margin-right: 8px;
+        border-radius: 8px;
+    }
+
+    .action-buttons-cell {
+        min-width: 150px;
+    }
+
+    .success-message,
+    .error-message {
+        padding: 18px;
+        font-size: 1em;
+        border-radius: 10px;
+        margin: 20px auto;
+    }
+
+    .button-container {
+        margin-top: 35px;
+        padding: 0 15px;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .book-card h3 {
+        font-size: 1.3em;
+    }
+
+    .book-card p {
+        font-size: 0.85em;
+    }
+
+    .book-card .price {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+
+    h1::after {
+        width: 80px;
+        height: 6px;
+    }
+
+    .form-container,
+    .table-container,
+    .book-grid {
+        padding: 25px 15px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 25px;
+        padding-bottom: 12px;
+    }
+
+    h2::after {
+        width: 50px;
+        height: 4px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 0.95em;
+        margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select {
+        padding: 12px 15px;
+        font-size: 0.9em;
+        border-radius: 8px;
+    }
+
+    .submit-button,
+    .action-button {
+        font-size: 1em;
+        padding: 14px 25px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    #librosTable th,
+    #librosTable td {
+        padding: 12px 15px;
+        font-size: 0.8em;
+    }
+
+    .delete-button,
+    .edit-button {
+        padding: 6px 10px;
+        font-size: 0.7em;
+        margin-right: 5px;
+        border-radius: 6px;
+    }
+
+    .action-buttons-cell {
+        min-width: 120px;
+    }
+
+    .success-message,
+    .error-message {
+        padding: 15px;
+        font-size: 0.9em;
+        border-radius: 8px;
+        margin: 15px auto;
+    }
+
+    .button-container {
+        margin-top: 30px;
+        padding: 0 10px;
+    }
+
+    .book-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+
+    .book-card img {
+        height: 250px; /* Ajusta la altura de la imagen en móviles */
+    }
+}
